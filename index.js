@@ -1,4 +1,4 @@
-// https://api.tvmaze.com/singlesearch/shows?q=girls
+// the TVMaze API URLs
 const tvmazeAPISearch = 'https://api.tvmaze.com/search/shows?q=';
 const tvmazeAPISingleSearch = 'https://api.tvmaze.com/singlesearch/shows?q=';
 
@@ -44,7 +44,6 @@ const displayTVShows = showsData => {
             findResult.append(imageBox);           
         }
     });
-
 };
 
 // Displays the show info
@@ -91,7 +90,6 @@ const createShowInfoButtonsEvent = () => {
             createReturnButtonEvent();
         });
     });
-
 };
 
 // Creates event listener for the return button
@@ -104,7 +102,7 @@ const createReturnButtonEvent = () => {
         // clear the show info
         showInfo.innerHTML = '';
 
-        // show the tv shows again
+        // show the tv shows search results again
         findResult.classList.remove('hide');
     });
 }
