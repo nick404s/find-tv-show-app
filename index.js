@@ -7,6 +7,7 @@ const findForm = document.querySelector('#find-form');
 const findInput = document.querySelector('#find-input');
 const findResult = document.querySelector('#find-result');
 const showInfo = document.querySelector('#show-info');
+const loader = document.querySelector('#loader');
 
 
 // Gets the TV shows data from the API
@@ -82,7 +83,13 @@ const createShowInfoButtonsEvent = () => {
             // construct the url for the selected show
             const url = `${tvmazeAPISingleSearch}${showName}`;
 
+            // show the spinner
+            loader.classList.remove('hide');
+
             const data = await getTVShowData(url);
+
+            // hide the spinner
+            loader.classList.add('hide');
 
             displayShowInfo(data);
 
@@ -128,7 +135,13 @@ findForm.addEventListener('submit', async evt => {
         return;
     }
     
+    // show the spinner
+    loader.classList.remove('hide');
+
     const data = await getTVShowData(`${tvmazeAPISearch}${inputText}`);
+
+    // hide the spinner
+    loader.classList.add('hide');
 
     //show the error message if the data is empty
     if (data === null || data.length === 0) {
