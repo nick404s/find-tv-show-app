@@ -1,6 +1,6 @@
 // the TVMaze API URLs
 const tvmazeAPISearch = 'https://api.tvmaze.com/search/shows?q=';
-const tvmazeAPISingleSearch = 'https://api.tvmaze.com/singlesearch/shows?q=';
+const tvmazeAPISearchByName = 'https://api.tvmaze.com/singlesearch/shows?q=';
 
 // get the DOM elements
 const findForm = document.querySelector('#find-form');
@@ -35,7 +35,7 @@ const displayTVShows = showsData => {
 
             imageBox.className = 'image-box';
             // create the image, name and info button for each show element
-            imageBox.innerHTML = `<h3>${element.show.name}</h3>
+            imageBox.innerHTML = `<h3><b>${element.show.name}</b></h3>
                                     <img src="${element.show.image.medium}">
                                     <button class="info-btn" data-name="${element.show.name}" 
                                     data-id="${element.show.id}">Get Info</button>
@@ -51,7 +51,7 @@ const displayTVShows = showsData => {
 const displayShowInfo = show => {
 
     showInfo.innerHTML = `<div id="info">
-                                <h3>${show.name}</h3>
+                                <h3><b>${show.name}</b></h3>
                                 <img src="${show.image.medium}">
                                 <p>Date of Release: ${show.premiered}</p>
                                 <p>Genres: ${show.genres.join(', ')}</p>
@@ -81,7 +81,7 @@ const createShowInfoButtonsEvent = () => {
             const showName = evt.target.getAttribute('data-name');
 
             // construct the url for the selected show
-            const url = `${tvmazeAPISingleSearch}${showName}`;
+            const url = `${tvmazeAPISearchByName}${showName}`;
 
             // show the spinner
             loader.classList.remove('hide');
