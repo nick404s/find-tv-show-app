@@ -86,12 +86,12 @@ const createShowInfoButtonsEvent = () => {
             // show the spinner
             loader.classList.remove('hide');
 
-            const data = await getDataFromApi(url);
+            const showData = await getDataFromApi(url);
 
             // hide the spinner
             loader.classList.add('hide');
 
-            displayShowInfo(data);
+            displayShowInfo(showData);
 
             // create event for the return button
             createReturnButtonEvent();
@@ -138,18 +138,18 @@ findForm.addEventListener('submit', async evt => {
     // show the spinner
     loader.classList.remove('hide');
 
-    const data = await getDataFromApi(`${tvmazeAPISearch}${inputText}`);
+    const showsData = await getDataFromApi(`${tvmazeAPISearch}${inputText}`);
 
     // hide the spinner
     loader.classList.add('hide');
 
     //show the error message if the data is empty
-    if (data === null || data.length === 0) {
+    if (showsData === null || showsData.length === 0) {
         displayError('Sorry, Couldn\'t Find the TV Show');
         return;
     }
 
-    displayTVShows(data); 
+    displayTVShows(showsData); 
 
     // create event listener for the get info buttons
     createShowInfoButtonsEvent();
