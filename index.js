@@ -36,7 +36,7 @@ const displayTVShows = showsData => {
             imageBox.className = 'image-box';
             // create the image, name and info button for each show element
             imageBox.innerHTML = `<h3><b>${element.show.name}</b></h3>
-                                    <img src="${element.show.image.medium}">
+                                    <img src="${element.show.image.medium} alt="${element.show.name}">
                                     <button class="info-btn" data-name="${element.show.name}" 
                                     data-id="${element.show.id}">Get Info</button>
                                     `;
@@ -52,7 +52,7 @@ const displayShowInfo = show => {
 
     showInfo.innerHTML = `<div id="info">
                                 <h3><b>${show.name}</b></h3>
-                                <img src="${show.image.medium}">
+                                <img src="${show.image.medium} alt="${show.name}">
                                 <p>Date of Release: ${show.premiered}</p>
                                 <p>Genres: ${show.genres.join(', ')}</p>
                                 <p>Summary: <br>${show.summary}</p>
