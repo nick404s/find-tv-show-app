@@ -11,7 +11,7 @@ const loader = document.querySelector('#loader');
 
 
 // Gets the TV shows data from the API
-const getTVShowData = async url => {
+const getDataFromApi = async url => {
 
     try {
         const response = await fetch(url);
@@ -86,7 +86,7 @@ const createShowInfoButtonsEvent = () => {
             // show the spinner
             loader.classList.remove('hide');
 
-            const data = await getTVShowData(url);
+            const data = await getDataFromApi(url);
 
             // hide the spinner
             loader.classList.add('hide');
@@ -138,7 +138,7 @@ findForm.addEventListener('submit', async evt => {
     // show the spinner
     loader.classList.remove('hide');
 
-    const data = await getTVShowData(`${tvmazeAPISearch}${inputText}`);
+    const data = await getDataFromApi(`${tvmazeAPISearch}${inputText}`);
 
     // hide the spinner
     loader.classList.add('hide');
