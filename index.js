@@ -36,7 +36,7 @@ const displayTVShows = showsData => {
             imageBox.className = 'image-box';
             // create the image, name and info button for each show element
             imageBox.innerHTML = `<h3><b>${element.show.name}</b></h3>
-                                    <img src="${element.show.image.medium} alt="${element.show.name}">
+                                    <img src="${element.show.image.medium}">
                                     <button class="info-btn" data-name="${element.show.name}" 
                                     data-id="${element.show.id}">Get Info</button>
                                     `;
@@ -52,7 +52,7 @@ const displayShowInfo = show => {
 
     showInfo.innerHTML = `<div id="info">
                                 <h3><b>${show.name}</b></h3>
-                                <img src="${show.image.medium} alt="${show.name}">
+                                <img src="${show.image.medium}">
                                 <p>Date of Release: ${show.premiered}</p>
                                 <p>Genres: ${show.genres.join(', ')}</p>
                                 <p>Summary: <br>${show.summary}</p>
@@ -86,12 +86,12 @@ const createShowInfoButtonsEvent = () => {
             // show the spinner
             loader.classList.remove('hide');
 
-            const showData = await getDataFromApi(url);
+            const theShowData = await getDataFromApi(url);
 
             // hide the spinner
             loader.classList.add('hide');
 
-            displayShowInfo(showData);
+            displayShowInfo(theShowData);
 
             // create event for the return button
             createReturnButtonEvent();
