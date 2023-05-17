@@ -32,8 +32,7 @@ const displayTVShows = showsData => {
             
             // create the image box div to store the show image and name
             const imageBox  = document.createElement('div');
-
-            imageBox.className = 'image-box';
+            
             // create the image, name and info button for each show element
             imageBox.innerHTML = `<h3><b>${element.show.name}</b></h3>
                                     <img src="${element.show.image.medium}">

@@ -86,11 +86,11 @@ form button {
 }
 
 .info-btn, #return-btn {
-  background-color: rgb(220, 96, 7);
+  background-color: rgb(212, 100, 20);
   border: 0;
   border-radius: 2.5rem;
   color: aliceblue;
-  padding: 0.2rem 0.5rem;
+  padding: 0.4rem 0.6rem;
   font-size: 1.2rem;
   margin-bottom: 0.2rem;
 }
@@ -104,21 +104,20 @@ form button {
   flex-wrap: wrap;
 }
 
+img {
+  border: 0.1rem solid rgb(199, 198, 198);
+  margin-bottom: 1rem;
+  box-shadow: 0 0.3rem 0.4rem rgb(144, 144, 144);
+}
+
+#show-info img {
+  height: 25rem;
+}
+
 .container div {
   max-width: 100%;
   width: 17rem;
-  height: 20rem;
-  margin: 2.5rem;
-}
-
-.container div h3 {
-  font-weight: 350;
-}
-
-.centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   margin: 2.5rem;
 }
 
 .hide {
@@ -127,11 +126,11 @@ form button {
 }
 
 .spinner {
-  border: 1rem solid #f3f3f3; /* Light grey */
+  border: 1rem solid lightgray;
   border-top: 1rem solid rgb(220, 96, 7);
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 12rem;
+  height: 12rem;
   animation: spin 2s linear infinite;
 }
 
