@@ -36,8 +36,8 @@ const displayTVShowSearchResults = showsData => {
             // create the image, name and info button for each show element
             imageBox.innerHTML = `<h3><b>${element.show.name}</b></h3>
                                     <img src="${element.show.image.medium}">
-                                    <button onclick="handleGetInfoBtn('${element.show.name}');" class="info-btn" data-name="${element.show.name}" 
-                                    data-id="${element.show.id}">Get Info</button>
+                                    <button onclick="handleGetInfoBtn('${element.show.name}');" 
+                                    class="info-btn" >Get Info</button>
                                     `;               
 
             //append the image box for display 
@@ -55,7 +55,7 @@ const displayShowInfo = show => {
                                 <p>Date of Release: ${show.premiered}</p>
                                 <p>Genres: ${show.genres.join(', ')}</p>
                                 <p>Summary: <br>${show.summary}</p>
-                                <button onclick="handleReturnBtn()" id="return-btn">Return</button>
+                                <button onclick="handleReturnBtn();" id="return-btn" >Return</button>
                             </div>
                             `;
 };
