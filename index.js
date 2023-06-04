@@ -23,7 +23,7 @@ const getDataFromApi = async url => {
 };
 
 // Displays the shows titles and images
-const displayTVShows = showsData => {
+const displayTVShowSearchResults = showsData => {
 
     showsData.forEach(element => {
 
@@ -36,9 +36,9 @@ const displayTVShows = showsData => {
             // create the image, name and info button for each show element
             imageBox.innerHTML = `<h3><b>${element.show.name}</b></h3>
                                     <img src="${element.show.image.medium}">
-                                    <button class="info-btn" data-name="${element.show.name}" 
+                                    <button onclick="handleGetInfoBtn('${element.show.name}');" class="info-btn" data-name="${element.show.name}" 
                                     data-id="${element.show.id}">Get Info</button>
-                                    `;
+                                    `;               
 
             //append the image box for display 
             findResult.append(imageBox);           
@@ -55,7 +55,7 @@ const displayShowInfo = show => {
                                 <p>Date of Release: ${show.premiered}</p>
                                 <p>Genres: ${show.genres.join(', ')}</p>
                                 <p>Summary: <br>${show.summary}</p>
-                                <button id="return-btn">Return</button>
+                                <button onclick="handleReturnBtn()" id="return-btn">Return</button>
                             </div>
                             `;
 };
@@ -65,53 +65,38 @@ const displayError = message => {
     findResult.innerHTML = `<h3 class="error">${message}</h3>`;
 };
 
-// Creates event listener for the info buttons
-const createShowInfoButtonsEvent = () => {
 
-    const buttons = document.querySelectorAll('.info-btn');
+// Handles the get info button click event
+const handleGetInfoBtn = async (showName) => {
 
-    buttons.forEach(button => {
-        button.addEventListener('click', async evt => {
+    // hide the tv shows search results
+    findResult.classList.add('hide');
 
-            // hide the tv shows search results
-            findResult.classList.add('hide');
+    // construct the url for the selected show
+    const url = `${tvmazeAPISearchByName}${showName}`;
 
-            // get the selected show name
-            const showName = evt.target.getAttribute('data-name');
+    // show the spinner
+    loader.classList.remove('hide');
 
-            // construct the url for the selected show
-            const url = `${tvmazeAPISearchByName}${showName}`;
+    const theShowData = await getDataFromApi(url);
 
-            // show the spinner
-            loader.classList.remove('hide');
+    // hide the spinner
+    loader.classList.add('hide');
 
-            const theShowData = await getDataFromApi(url);
-
-            // hide the spinner
-            loader.classList.add('hide');
-
-            displayShowInfo(theShowData);
-
-            // create event for the return button
-            createReturnButtonEvent();
-        });
-    });
+    displayShowInfo(theShowData);
 };
 
-// Creates event listener for the return button
-const createReturnButtonEvent = () => {
 
-    const returnBtn = document.querySelector('#return-btn');
+// Handles the return button click event
+const handleReturnBtn = () => {
 
-    returnBtn.addEventListener('click', () => {
+    // clear the show info
+    showInfo.innerHTML = '';
 
-        // clear the show info
-        showInfo.innerHTML = '';
+    // show the tv shows search results again
+    findResult.classList.remove('hide');
+};
 
-        // show the tv shows search results again
-        findResult.classList.remove('hide');
-    });
-}
 
 // Event listener for the find form
 findForm.addEventListener('submit', async evt => {
@@ -148,10 +133,7 @@ findForm.addEventListener('submit', async evt => {
         return;
     }
 
-    displayTVShows(showsData); 
-
-    // create event listener for the get info buttons
-    createShowInfoButtonsEvent();
+    displayTVShowSearchResults(showsData); 
 
     // reset the input 
     findInput.value = '';
